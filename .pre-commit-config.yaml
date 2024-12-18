@@ -1,0 +1,76 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-ast
+  - id: check-case-conflict
+  - id: check-merge-conflict
+  - id: check-yaml
+  - id: debug-statements
+  - id: detect-aws-credentials
+    args: [--allow-missing-credentials]
+  - id: detect-private-key
+  - id: double-quote-string-fixer
+  - id: end-of-file-fixer
+  - id: fix-byte-order-marker
+  - id: name-tests-test
+
+  - id: no-commit-to-branch
+    args: [--branch, develop, --branch, main, --branch, master]
+  - id: requirements-txt-fixer
+  - id: trailing-whitespace
+- repo: https://github.com/pre-commit/mirrors-autopep8
+  rev: v2.0.4
+  hooks:
+  - id: autopep8
+# - repo: https://github.com/pre-commit/mirrors-mypy
+#   rev: v1.5.1
+#   hooks:
+#   - id: mypy
+#     additional_dependencies: [types-all]
+#     exclude: ^testing/resources/
+
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.11.0
+  hooks:
+  - id: pyupgrade
+    args: [--py38-plus]
+- repo: https://github.com/asottile/reorder-python-imports
+  rev: v3.11.0
+  hooks:
+  - id: reorder-python-imports
+    exclude: ^(pre_commit/resources/|testing/resources/python3_hooks_repo/)
+    args: [--py38-plus, --add-import, 'from __future__ import annotations']
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.2.5
+  hooks:
+  - id: codespell
+- repo: https://github.com/jackdewinter/pymarkdown
+  rev: v0.9.13.4
+  hooks:
+  - id: pymarkdown
+  #manually added MD013
+    args: [--disable-rules, MD024, --disable-rules, MD013, scan]
+- repo: https://github.com/jorisroovers/gitlint
+  rev: v0.19.1
+  hooks:
+  - id: gitlint
+  # refer to https://jorisroovers.com/gitlint/rules/ for config details
+    args: [--contrib=CT1, -c, T1.line-length=100,
+    -c, T7.regex=^(build|ci|docs|feat|fix|perf|refactor|style|test),
+    -c, B1.line-length=100,
+    -c, B5.min-length=8,
+    --ignore, B6,
+    --msg-filename]
+- repo: https://github.com/PyCQA/flake8
+  rev: 6.1.0
+  hooks:
+  - id: flake8
+- repo: https://github.com/tcort/markdown-link-check
+  rev: v3.11.2
+  hooks:
+    - id: markdown-link-check
+      args: [-q, -c, markdown-link-check-config.json]
+# # See https://pre-commit.com for more information
+# # See https://pre-commit.com/hooks.html for more hooks
