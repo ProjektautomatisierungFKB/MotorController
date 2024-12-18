@@ -1,28 +1,29 @@
-from __future__ import annotations
+import RPi.GPIO as GPIO
+from time import sleep
 
-from logger import logger
+# GPIO-Setup
+MOTOR_PINS = [17, 27, 22, 23]
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(MOTOR_PINS, GPIO.OUT)
 
+# PWM-Setup
+pwms = [GPIO.PWM(pin, 50) for pin in MOTOR_PINS]
+for pwm in pwms:
+    pwm.start(7.5)  # Neutralstellung
 
-class PinVoltageController:
-    """A class to control the voltage of an GPIO pin"""
+def start_motors():
+    for pwm in pwms:
+        pwm.ChangeDutyCycle(10)  # Motoren nach vorne bewegen
 
-    def __init__(self):
-        self._pin = 0
-        self._voltage = 0
+def stop_motors():
+    for pwm in pwms:
+        pwm.ChangeDutyCycle(7.5)  # Stop
 
-    def assign_pin(self, pin):
-        """Set the pin of the voltage controller"""
-        self._pin = pin
-        logger.debug(f'Assigned pin {pin}')
-
-    def set_voltage(self, voltage):
-        """Sets the voltage of the pin in V"""
-        logger.debug(f'Set voltage of pin {self._pin} to {voltage}V')
-        self._voltage = voltage
-
-
-con = PinVoltageController()
-
-con.assign_pin(1)
-
-con.set_voltage(0.3)
+try:
+    print("Starte Motoren...")
+    start_motors()
+    while True:
+        sleep(1)
+except KeyboardInterrupt:
+    stop_motors()
+    GPIO.cleanup()
