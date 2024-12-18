@@ -26,3 +26,5 @@ con = PinVoltageController()
 con.assign_pin(1)
 
 con.set_voltage(0.3)
+
+# test
