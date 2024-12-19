@@ -40,13 +40,29 @@ class DriveController:
     def left(self):
         """Drive left"""
         logger.debug('Moving left')
+        self._front_left_servo.turn_clockwise()
+        self._back_left_servo.turn_counter_clockwise()
+        self._front_right_servo.turn_clockwise()
+        self._back_right_servo.turn_counter_clockwise()
+
+    def right(self):
+        """Drive right"""
+        logger.debug('Moving right')
+        self._front_left_servo.turn_counter_clockwise()
+        self._back_left_servo.turn_clockwise()
+        self._front_right_servo.turn_counter_clockwise()
+        self._back_right_servo.turn_clockwise()
+
+    def turn_left(self):
+        """Turn left"""
+        logger.debug('Moving left')
         self._front_left_servo.turn_counter_clockwise()
         self._back_left_servo.turn_counter_clockwise()
         self._front_right_servo.turn_counter_clockwise()
         self._back_right_servo.turn_counter_clockwise()
 
-    def right(self):
-        """Drive right"""
+    def turn_right(self):
+        """Turn right"""
         logger.debug('Moving right')
         self._front_left_servo.turn_clockwise()
         self._back_left_servo.turn_clockwise()
