@@ -1,0 +1,3 @@
+[submodule "extDev/shared_utils"]
+	path = extDev/shared_utils
+	url = https://github.com/ProjektautomatisierungFKB/shared_utils.git

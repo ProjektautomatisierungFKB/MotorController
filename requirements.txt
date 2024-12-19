@@ -1,0 +1,14 @@
+cfgv==3.4.0
+colorzero==2.0
+distlib==0.3.9
+filelock==3.16.1
+gpiozero==2.0.1
+identify==2.6.3
+lgpio==0.2.2.0
+nodeenv==1.9.1
+pigpio==1.78
+platformdirs==4.3.6
+pre_commit==4.0.1
+PyYAML==6.0.2
+RPi.GPIO==0.7.1
+virtualenv==20.28.0
