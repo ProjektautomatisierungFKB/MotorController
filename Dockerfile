@@ -14,8 +14,11 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY dev/main.py ./
-COPY dev/servo_controller.py ./
+COPY dev/motor_mqtt_client.py ./
 COPY dev/drive_controller.py ./
+COPY dev/servo_controller.py ./
 COPY extDev/shared_utils/utils/logger.py ./
+COPY extDev/shared_utils/utils/mqtt_config.py ./
+COPY extDev/shared_utils/utils/abstract_mqtt_client.py ./
 
 CMD ["python", "./main.py"]

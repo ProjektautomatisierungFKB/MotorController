@@ -1,20 +1,22 @@
 from __future__ import annotations
 
-from time import sleep
+import time
 
-from drive_controller import DriveController
+from motor_mqtt_client import MotorMQTTClient
+from mqtt_config import BROKER
+from mqtt_config import PORT
 
 WHEEL_PINS = [[27, 22],
               [17, 23]]
 
-driver = DriveController(WHEEL_PINS)
+client = MotorMQTTClient(WHEEL_PINS)
+client.connect(BROKER, PORT)
+client.run(5)
 
 while True:
-    driver.forwards()
-    sleep(5)
-    driver.left()
-    sleep(5)
-    driver.right()
-    sleep(5)
-    driver.backwards()
-    sleep(5)
+    try:
+        # keep main thread alive
+        time.sleep(1)
+    except KeyboardInterrupt:
+        client.stop()
+        exit()
