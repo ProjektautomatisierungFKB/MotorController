@@ -11,8 +11,10 @@ driver = DriveController(WHEEL_PINS)
 
 while True:
     driver.forwards()
-    sleep(10)
-    driver.idle()
+    sleep(5)
+    driver.left()
+    sleep(5)
+    driver.right()
     sleep(5)
     driver.backwards()
-    sleep(10)
+    sleep(5)
