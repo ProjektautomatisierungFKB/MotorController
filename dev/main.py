@@ -2,14 +2,17 @@ from __future__ import annotations
 
 from time import sleep
 
-from gpiozero import Servo
+from drive_controller import DriveController
 
-servo = Servo(17)
+WHEEL_PINS = [[27, 22],
+              [17, 23]]
+
+driver = DriveController(WHEEL_PINS)
 
 while True:
-    servo.min()
-    sleep(2)
-    servo.mid()
-    sleep(2)
-    servo.max()
-    sleep(2)
+    driver.forwards()
+    sleep(10)
+    driver.idle()
+    sleep(5)
+    driver.backwards()
+    sleep(10)

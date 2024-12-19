@@ -14,5 +14,8 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY dev/main.py ./
+COPY dev/servo_controller.py ./
+COPY dev/drive_controller.py ./
+COPY extDev/shared_utils/utils/logger.py ./
 
 CMD ["python", "./main.py"]
