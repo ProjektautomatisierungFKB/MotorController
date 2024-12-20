@@ -139,4 +139,3 @@ Das Hauptskript:
 - Passen Sie die GPIO-Pins entsprechend der Hardwarekonfiguration an.
 - Testen Sie die Bewegungslogik zunächst in einer simulierten Umgebung oder mit Debugging-Ausgaben.
 - Beachten Sie die Stromanforderungen der Servos, insbesondere bei gleichzeitiger Bewegung mehrerer Motoren.
-
