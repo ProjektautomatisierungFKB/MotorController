@@ -1,0 +1,21 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    python3-rpi.gpio \
+    python3-gpiozero \
+    gcc \
+    libffi-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+
+RUN pip install -r requirements.txt
+
+COPY dev/servo_controller.py ./
+COPY dev/driver_controller.py ./
+COPY extDev/shared_utils/utils/logger.py ./
+COPY integration_testing/drive_cross.py ./
+
+CMD ["python", "./drive_cross.py"]
