@@ -10,7 +10,7 @@ class MotorMQTTClient(AbstractMQTTClient):
     publish_topics = []
 
     subscribe_topics = [
-        'robotX/logic/control/input/manual',
+        'robotX/actuators/movement'
     ]
 
     def __init__(self, wheel_pins, publish_topics=publish_topics,
@@ -18,13 +18,11 @@ class MotorMQTTClient(AbstractMQTTClient):
         """Initialize the BluetoothMQTTClient"""
         super().__init__(publish_topics, subscribe_topics)
 
-        self._subscribe_messages['robotX/logic/control/input/manual'] = 'nil'
-
         self._driver = DriveController(wheel_pins)
 
     def handle_received_message(self, topic, payload):
         logger.info(f'Handling message on topic {topic}: {payload}')
-        if (topic == 'robotX/logic/control/input/manual'):
+        if (topic == 'robotX/actuators/movement'):
             if (payload == 'nil'):
                 self._driver.idle()
             elif (payload == 'UP'):
