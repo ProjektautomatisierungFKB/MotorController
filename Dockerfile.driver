@@ -14,7 +14,8 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY dev/servo_controller.py ./
+COPY dev/driver_controller.py ./
 COPY extDev/shared_utils/utils/logger.py ./
-COPY integration_testing/turn_single_servo.py ./
+COPY integration_testing/drive_cross.py ./
 
-CMD ["python", "./turn_single_servo.py"]
+CMD ["python", "./drive_cross.py"]
